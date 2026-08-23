@@ -23,6 +23,9 @@ class SpamResponse(BaseModel):
     prediction: str
     confidence: float
 
+@app.get("/health")
+async def health_check():
+    return {"status": "alive"}
 
 @app.post("/predict", response_model=SpamResponse)
 async def predict_spam(email: EmailRequest, request: Request):
